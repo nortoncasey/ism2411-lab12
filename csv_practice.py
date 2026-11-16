@@ -1,6 +1,4 @@
-# ISM2411 Lab 12 — Read a Sales CSV, Write a Cleaned Report
-#
-# Reflection 1: How does this ETL pipeline compare to doing the same task in Excel?
+# Reflection 1 How does this ETL pipeline compare to doing the same task in Excel?
 # In Excel I would add a Total column with a formula, filter for orders over $100,
 # and copy those rows to a new sheet by hand, and I'd have to redo every step
 # whenever the data changed. Python does all of it in one run, works the same on
@@ -20,7 +18,7 @@ import os
 from datetime import datetime
 
 
-# ===== Exercise 1: Get the file =====
+# Exercise 1: Get the file 
 print("=== Exercise 1: Get the file ===")
 print("data/sales.csv found:", os.path.exists("data/sales.csv"))
 with open("data/sales.csv", "r") as f:
@@ -30,8 +28,8 @@ print("Number of data rows:", len(lines) - 1)  # minus 1 for the header
 print()
 
 
-# ===== Exercise 2: Read and print raw rows =====
-print("=== Exercise 2: Read and print raw rows ===")
+# Exercise 2: Read and print raw rows 
+print(" Exercise 2: Read and print raw rows ")
 with open("data/sales.csv", "r") as f:
     reader = csv.reader(f)
     for row in reader:
@@ -39,8 +37,8 @@ with open("data/sales.csv", "r") as f:
 print()
 
 
-# ===== Exercise 3: Skip the header =====
-print("=== Exercise 3: Skip the header ===")
+#  Exercise 3: Skip the header 
+print("Exercise 3: Skip the header")
 with open("data/sales.csv", "r") as f:
     reader = csv.reader(f)
     header = next(reader)  # grab the first row (the column names) and move past it
@@ -50,8 +48,8 @@ with open("data/sales.csv", "r") as f:
 print()
 
 
-# ===== Exercise 4: Compute totals =====
-print("=== Exercise 4: Compute totals ===")
+# Exercise 4: Compute totals 
+print("Exercise 4: Compute totals")
 total_revenue = 0
 with open("data/sales.csv", "r") as f:
     reader = csv.reader(f)
@@ -67,8 +65,8 @@ print(f"Total revenue: ${total_revenue:,.2f}")
 print()
 
 
-# ===== Exercise 5: Filter and write =====
-print("=== Exercise 5: Filter and write ===")
+# Exercise 5: Filter and write 
+print(" Exercise 5: Filter and write ")
 high_value = []  # orders over $100 go in this list
 original_count = 0  # counts every order in sales.csv
 
@@ -97,8 +95,8 @@ print(f"Rows written to data/cleaned.csv: {len(high_value)}")
 print()
 
 
-# ===== Exercise 6: csv.DictReader =====
-print("=== Exercise 6: csv.DictReader ===")
+# Exercise 6: csv.DictReader 
+print("Exercise 6: csv.DictReader")
 dict_total = 0
 with open("data/sales.csv", "r") as f:
     reader = csv.DictReader(f)  # uses the header row as the keys, so no next() needed
@@ -116,8 +114,8 @@ print("Same total as Exercise 4:", round(dict_total, 2) == round(total_revenue, 
 print()
 
 
-# ===== Exercise 7: Sales summary by product =====
-print("=== Exercise 7: Sales summary by product ===")
+# Exercise 7: Sales summary by product 
+print("Exercise 7: Sales summary by product")
 summary = {}  # {product name: total revenue}
 with open("data/sales.csv", "r") as f:
     reader = csv.DictReader(f)
@@ -133,8 +131,8 @@ for product in sorted(summary):  # sorted() puts the names in A-Z order
 print()
 
 
-# ===== Exercise 8: Append mode log =====
-print("=== Exercise 8: Append mode log ===")
+# Exercise 8: Append mode log 
+print("Exercise 8: Append mode log")
 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # current date and time as text
 # "a" (append) adds to the end of the file; "w" would erase it every run
 with open("data/run_log.txt", "a") as f:
